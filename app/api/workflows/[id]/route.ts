@@ -1,8 +1,8 @@
-import { createServerClient } from "@/lib/supabase/server"
+import { createClient } from "@/lib/supabase/server"
 import { NextResponse } from "next/server"
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const supabase = await createServerClient()
+  const supabase = await createClient()
   const { id } = await params
 
   const {
@@ -41,7 +41,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 }
 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const supabase = await createServerClient()
+  const supabase = await createClient()
   const { id } = await params
 
   const {

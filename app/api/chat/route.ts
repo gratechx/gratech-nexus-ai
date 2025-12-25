@@ -24,3 +24,5 @@ You provide insightful, accurate, and helpful responses. You're professional yet
 
   return result.toUIMessageStreamResponse()
 }
+
+
