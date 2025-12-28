@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,25 +20,24 @@ export default function SignupPage() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
     setIsLoading(true)
     setError(null)
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/chat`,
-          data: {
-            display_name: displayName,
-          },
-        },
-      })
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.signUp({ email, password })
+      
       if (error) throw error
-      router.push("/auth/check-email")
+      
+      // حفظ اسم العرض
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('gratech_display_name', displayName)
+      }
+      
+      // توجيه للـ Chat مباشرة
+      router.push("/chat")
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred")
+      setError(error instanceof Error ? error.message : "حدث خطأ")
     } finally {
       setIsLoading(false)
     }
@@ -49,7 +46,7 @@ export default function SignupPage() {
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-background neural-grid p-6">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
-
+      
       <div className="w-full max-w-md relative z-10">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-3 text-center mb-4">
@@ -65,18 +62,18 @@ export default function SignupPage() {
 
           <Card className="border-2 border-primary/20 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl">Create Account</CardTitle>
-              <CardDescription>Join the future of AI collaboration</CardDescription>
+              <CardTitle className="text-2xl">إنشاء حساب</CardTitle>
+              <CardDescription>انضم لمستقبل الذكاء الاصطناعي</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSignup}>
                 <div className="flex flex-col gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="displayName">Display Name</Label>
+                    <Label htmlFor="displayName">الاسم</Label>
                     <Input
                       id="displayName"
                       type="text"
-                      placeholder="Your name"
+                      placeholder="سليمان الشمري"
                       required
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
@@ -84,11 +81,11 @@ export default function SignupPage() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">الإيميل</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder="admin@gratech.sa"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -96,11 +93,11 @@ export default function SignupPage() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">كلمة المرور</Label>
                     <Input
                       id="password"
                       type="password"
-                      placeholder="Min. 8 characters"
+                      placeholder="8 حروف على الأقل"
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -113,13 +110,13 @@ export default function SignupPage() {
                     className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
                     disabled={isLoading}
                   >
-                    {isLoading ? "Creating account..." : "Create Account"}
+                    {isLoading ? "جاري الإنشاء..." : "إنشاء حساب"}
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm text-muted-foreground">
-                  Already have an account?{" "}
+                  عندك حساب؟{" "}
                   <Link href="/auth/login" className="text-primary hover:underline font-medium">
-                    Sign in
+                    سجل دخول
                   </Link>
                 </div>
               </form>

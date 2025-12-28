@@ -1,96 +1,69 @@
-import type React from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Brain, Zap, Network, Bot, Workflow, BarChart3, ArrowRight } from "lucide-react"
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { Brain, Zap, Rocket, Crown, MessageSquare, LayoutDashboard } from 'lucide-react'
 
 export default function HomePage() {
+  const router = useRouter()
+
+  const enterPlatform = (path: string) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('gratech_user', JSON.stringify({
+        id: 'gratech-admin-001',
+        email: 'admin@gratech.sa',
+        name: 'سليمان الشمري'
+      }))
+    }
+    router.push(path)
+  }
+
   return (
-    <div className="min-h-screen bg-background neural-grid">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 pointer-events-none" />
-
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <div className="container mx-auto px-6 py-20">
-          <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 text-primary">
-              <Brain className="h-16 w-16" />
-              <Zap className="h-10 w-10" />
-            </div>
-
-            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent leading-tight">
-              GraTech Nexus
-            </h1>
-
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
-              The Ultimate AI Superplatform. Multi-Brain Fusion, Autonomous Agents, and Intelligent Workflows.
-            </p>
-
-            <div className="flex gap-4 mt-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-lg px-8"
-              >
-                <Link href="/auth/signup">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary/30 text-lg px-8 bg-transparent"
-              >
-                <Link href="/auth/login">Sign In</Link>
-              </Button>
-            </div>
+    <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent" />
+      
+      <div className="relative z-10 text-center space-y-8 max-w-2xl">
+        <div className="flex justify-center items-center gap-4">
+          <Crown className="h-20 w-20 text-yellow-400 animate-pulse" />
+        </div>
+        
+        <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent">
+          COMET-X SOVEREIGN
+        </h1>
+        
+        <p className="text-2xl text-gray-300">Neural Sovereignty Platform</p>
+        <p className="text-lg text-gray-400">مملوكة لـ سليمان نزال الشمري (@Grar00t)</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="bg-purple-500/10 rounded-xl p-4 border border-purple-500/20 text-gray-400">
+            <Brain className="w-8 h-8 mx-auto mb-2 text-purple-400" />
+            <p className="font-semibold text-white">Three-Lobe</p>
+            <p>معمارية عصبية</p>
           </div>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24">
-            <FeatureCard
-              icon={<Brain className="h-8 w-8" />}
-              title="Multi-Brain Fusion"
-              description="Combine GPT-4, Claude, Gemini, and more. Get the best answer from multiple AI models simultaneously."
-            />
-            <FeatureCard
-              icon={<Network className="h-8 w-8" />}
-              title="Knowledge Graph"
-              description="Build interconnected knowledge networks with neural memory and semantic relationships."
-            />
-            <FeatureCard
-              icon={<Bot className="h-8 w-8" />}
-              title="Autonomous Agents"
-              description="Deploy intelligent agents that work independently to complete complex tasks."
-            />
-            <FeatureCard
-              icon={<Workflow className="h-8 w-8" />}
-              title="Visual Workflows"
-              description="Design and automate AI workflows with drag-and-drop simplicity."
-            />
-            <FeatureCard
-              icon={<BarChart3 className="h-8 w-8" />}
-              title="Advanced Analytics"
-              description="Track performance, costs, and insights across all AI operations."
-            />
-            <FeatureCard
-              icon={<Zap className="h-8 w-8" />}
-              title="Real-time Streaming"
-              description="Experience lightning-fast AI responses with live streaming outputs."
-            />
+          <div className="bg-cyan-500/10 rounded-xl p-4 border border-cyan-500/20 text-gray-400">
+            <Zap className="w-8 h-8 mx-auto mb-2 text-cyan-400" />
+            <p className="font-semibold text-white">Multi-AI</p>
+            <p>Claude + GPT + DeepSeek</p>
+          </div>
+          <div className="bg-pink-500/10 rounded-xl p-4 border border-pink-500/20 text-gray-400">
+            <Rocket className="w-8 h-8 mx-auto mb-2 text-pink-400" />
+            <p className="font-semibold text-white">Connectors</p>
+            <p>GitHub + Azure</p>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <div className="group p-6 bg-card border-2 border-border hover:border-primary/50 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/10">
-      <div className="text-primary mb-4 group-hover:scale-110 transition-transform">{icon}</div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <button onClick={() => enterPlatform('/sovereign')} className="flex items-center justify-center gap-3 text-xl px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-2xl shadow-purple-500/50 hover:scale-105 transition-all text-white">
+            <MessageSquare className="w-6 h-6" />
+            Sovereign Chat
+          </button>
+          <button onClick={() => enterPlatform('/dashboard')} className="flex items-center justify-center gap-3 text-xl px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-2xl shadow-cyan-500/50 hover:scale-105 transition-all text-white">
+            <LayoutDashboard className="w-6 h-6" />
+            Dashboard
+          </button>
+        </div>
+        
+        <p className="text-sm text-gray-600 mt-8">COMET-X SOVEREIGN v1.0.0 • Azure AI Foundry</p>
+      </div>
     </div>
   )
 }

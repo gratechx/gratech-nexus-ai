@@ -1,0 +1,64 @@
+{
+  "agents": [
+    {
+      "id": "agent_claude",
+      "user_id": "suliman",
+      "name": "CLAUDE-OPUS",
+      "type": "Genius",
+      "config": {
+        "model": "claude-opus-4-5",
+        "specialty": "عربي، تحليل استراتيجي، كتابة إبداعية",
+        "endpoint": "alshammaris-2770"
+      },
+      "status": "active",
+      "metrics": { "tasks_completed": 0, "success_rate": 100, "uptime": 100 },
+      "created_at": "2025-12-25T00:00:00Z",
+      "updated_at": "2025-12-25T00:00:00Z"
+    },
+    {
+      "id": "agent_gpt4",
+      "user_id": "suliman",
+      "name": "GPT-COMMANDER",
+      "type": "Genius",
+      "config": {
+        "model": "gpt-4.1",
+        "specialty": "كود، أتمتة، تنفيذ سريع، Azure",
+        "endpoint": "alshammaris-2770"
+      },
+      "status": "active",
+      "metrics": { "tasks_completed": 0, "success_rate": 100, "uptime": 100 },
+      "created_at": "2025-12-25T00:00:00Z",
+      "updated_at": "2025-12-25T00:00:00Z"
+    },
+    {
+      "id": "agent_deepseek",
+      "user_id": "suliman",
+      "name": "DEEPSEEK-ANALYST",
+      "type": "Genius",
+      "config": {
+        "model": "DeepSeek-R1-0528",
+        "specialty": "تحليل عميق، reasoning، حل مشاكل معقدة",
+        "endpoint": "alshammaris-2770"
+      },
+      "status": "active",
+      "metrics": { "tasks_completed": 0, "success_rate": 100, "uptime": 100 },
+      "created_at": "2025-12-25T00:00:00Z",
+      "updated_at": "2025-12-25T00:00:00Z"
+    },
+    {
+      "id": "agent_orchestrator",
+      "user_id": "suliman",
+      "name": "COMETOPUS-MASTER",
+      "type": "Orchestrator",
+      "config": {
+        "model": "claude-opus-4-5",
+        "specialty": "تنسيق بين الـ Agents، اختيار النموذج المناسب",
+        "subordinates": ["agent_claude", "agent_gpt4", "agent_deepseek"]
+      },
+      "status": "active",
+      "metrics": { "tasks_completed": 0, "success_rate": 100, "uptime": 100 },
+      "created_at": "2025-12-25T00:00:00Z",
+      "updated_at": "2025-12-25T00:00:00Z"
+    }
+  ]
+}

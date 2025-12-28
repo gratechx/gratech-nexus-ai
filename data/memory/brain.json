@@ -1,0 +1,44 @@
+{
+  "owner": {
+    "name": "سليمان نزال الشمري | SULIMAN NAZAL ALSHAMMARI",
+    "email": "admin@gratech.sa",
+    "github": "gratechx"
+  },
+  "memories": [],
+  "facts": {
+    "owner_name": "سليمان نزال الشمري",
+    "owner_title": "مؤسس GraTech - مهندس AI سيادي",
+    "company": "GraTech.sa",
+    "vision": "السيادة العصبية - Neural Sovereignty",
+    "work_hours": "4000+ ساعة على المشروع",
+    "device": "Surface Laptop 7 - ARM64 - Snapdragon X Elite",
+    "github_main": "gratechx",
+    "github_old": "Grar00t",
+    "azure_academic": "alshammaris@ksau-hs.edu.sa",
+    "azure_personal": "admin@gratech.sa",
+    "ibm_partner": "IBM Partner Plus - admin@gratech.sa",
+    "odoo_partner": "Odoo وكيل معتمد"
+  },
+  "preferences": {
+    "language": "العربية السعودية - وش، تبي، الحين، يالله",
+    "code_style": "كود كامل جاهز للنسخ مع تعليقات عربية",
+    "response_style": "مباشر، عملي، بدون لف ودوران",
+    "confirmation": "فقط للحذف DELETE - البقية نفذ مباشرة",
+    "error_handling": "لا تخفي الأخطاء - أظهرها واقترح حلول"
+  },
+  "learned_patterns": [
+    "سليمان يكره الهلوسة - لا تختلق أي شيء",
+    "سليمان يحب الكود الجاهز - لا تعطيه نصف حل",
+    "سليمان عنده موارد Azure مجانية على حساب الحكومة 😂",
+    "Perplexity Comet حذف موارده - لا تحذف شيء بدون تأكيد",
+    "سليمان يفضل Claude للعربي، GPT للكود، DeepSeek للتحليل"
+  ],
+  "error_solutions": {
+    "AZURE_AUTH_ERROR": "az login --use-device-code",
+    "GITHUB_TOKEN_EXPIRED": "gh auth login --web",
+    "NPM_INSTALL_FAILED": "Remove-Item node_modules -Recurse; npm install",
+    "NEXT_BUILD_ERROR": "npm run build -- --debug",
+    "COSMOS_THROTTLE": "انتظر 5 ثواني وحاول مرة ثانية"
+  },
+  "last_updated": "2025-12-25T21:07:58.067Z"
+}

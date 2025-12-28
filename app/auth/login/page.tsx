@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -21,19 +19,17 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
     setIsLoading(true)
     setError(null)
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      
       if (error) throw error
       router.push("/chat")
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred")
+      setError(error instanceof Error ? error.message : "حدث خطأ")
     } finally {
       setIsLoading(false)
     }
@@ -42,7 +38,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-background neural-grid p-6">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
-
+      
       <div className="w-full max-w-md relative z-10">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-3 text-center mb-4">
@@ -58,18 +54,18 @@ export default function LoginPage() {
 
           <Card className="border-2 border-primary/20 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl">Welcome Back</CardTitle>
-              <CardDescription>Sign in to access your AI workspace</CardDescription>
+              <CardTitle className="text-2xl">أهلاً بك</CardTitle>
+              <CardDescription>سجل دخول لمساحة العمل</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleLogin}>
                 <div className="flex flex-col gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">الإيميل</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder="admin@gratech.sa"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +73,7 @@ export default function LoginPage() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">كلمة المرور</Label>
                     <Input
                       id="password"
                       type="password"
@@ -93,13 +89,13 @@ export default function LoginPage() {
                     className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
                     disabled={isLoading}
                   >
-                    {isLoading ? "Signing in..." : "Sign In"}
+                    {isLoading ? "جاري الدخول..." : "دخول"}
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm text-muted-foreground">
-                  Don't have an account?{" "}
+                  ما عندك حساب؟{" "}
                   <Link href="/auth/signup" className="text-primary hover:underline font-medium">
-                    Sign up
+                    سجل الآن
                   </Link>
                 </div>
               </form>
